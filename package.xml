@@ -1,0 +1,19 @@
+<package>
+  <name>bcf2000</name>
+  <version>0.0.1</version>
+  <description>
+      ROS driver to use the Behringer B-Control Fader motorized MIDI device as a joystick.
+  </description>
+  <maintainer email="i.havoutis@gmail.com">Ioannis Havoutis</maintainer>
+  <author>Ioannis Havoutis</author>
+  <license>BSD</license>
+
+  <url>http://ros.org/wiki/bcf2000</url>
+
+  <run_depend>rospy</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>python-pygame</run_depend>
+
+</package>
+
+
