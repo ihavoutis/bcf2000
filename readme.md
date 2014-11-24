@@ -2,7 +2,7 @@
 
 ROS driver to use the Behringer B-Control Fader motorized MIDI device as a joystick.
 
-run with: `rosrun bcf2000 bcf2000_driver.py <in_id> <out_id> <reset>`
+run with: `rosrun bcf2000 bcf2000_driver.py <in_id> <out_id> <reset>`,
 where `<in_id>` is the id of the input device and `<out_id>` the id of the output device,
 pass anything to `<reset>` to set all channels to 0 at startup.
 
@@ -13,3 +13,4 @@ rostopic echo /bcf2000/joy
 
 >rostopic pub -1 /bcf2000/joy/input sensor_msgs/Joy 'buttons: [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8,1,1,1,1]'
 
+Quick note: if you don't get anything going then you are not using he correct in/out MIDI device num args.. for example: rosrun bcf2000 bcf2000_driver.py 3 2 1
