@@ -82,7 +82,7 @@ def main():
 
    
    rospy.init_node('bcf2000_driver_node')
-   pub = rospy.Publisher('/bcf2000/joy', Joy, latch=True)
+   pub = rospy.Publisher('/bcf2000/joy', Joy, latch=True, queue_size=1)
 
    def callback(data):
 	   if len(data.axes)>len(control_axes):
