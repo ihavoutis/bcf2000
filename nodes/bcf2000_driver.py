@@ -90,8 +90,9 @@ def main():
 		return
 	   index = 0
 	   for val in data.axes:
+		val = 0.0 if val < 0.0 else 1.0 if val > 1.0 else val
 		#print 'index: ' + str(index) + ', axis: ' + str(control_axes.keys()[index]) + '  ...'
-		controller_input.write([[[176, int(sorted(control_axes.keys())[index]), int(val), 0], 0]])
+		controller_input.write([[[176, int(sorted(control_axes.keys())[index]), int(val*127.0), 0], 0]])
 		m.axes[index] = val
 		index += 1
 	
@@ -100,9 +101,10 @@ def main():
 		return
 	   index = 0
 	   for val in data.buttons:
-		if val > 0: val = 127
+		if val > 0: val = 1
 		if val < 0: val = 0
-		controller_input.write([[[176, int(control_buttons[index]), int(val), 0], 0]])
+		val = 0 if val < 0 else 1 if val > 1 else val
+		controller_input.write([[[176, int(control_buttons[index]), int(val*127), 0], 0]])
 		m.buttons[index] = val
 		index += 1
 
@@ -136,13 +138,13 @@ def main():
             if control_id in control_axes:
                control_val = int(control[2])
                axis = control_axes[control_id]
-               m.axes[axis] = control_val
+               m.axes[axis] = control_val/127.0 # normalize value to 1
                p = True
 
             if control_id in control_buttons:
                button = control_buttons.index(control_id)
                if control[2] != 0:
-                 m.buttons[button] = 127
+                 m.buttons[button] = 1
                else:
                  m.buttons[button] = 0
                p = True
